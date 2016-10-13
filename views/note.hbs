@@ -1,0 +1,18 @@
+<form method="{{method}}" action="/note">
+    <label>Title</label>
+    <input type="text" placeholder="Title" required />
+    <br>
+    <label>Description</label>
+    <textarea rows="4" cols="40">
+    </textarea>
+    <br>
+    <label>Importance</label>
+    <input type="number" min="0" max="5" />
+    <br>
+    <label>Due date</label>
+    <input type="datetime" />
+    <br>
+    <input type="submit" value="Save">
+    <br>
+    <input type="reset" value="Cancel">
+</form>
