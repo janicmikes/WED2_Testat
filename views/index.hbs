@@ -33,10 +33,12 @@
                     <div class="myownrow">
                         <div class="col-2">{{this.due}}&nbsp;</div>
                         <div class="col-8 todotitle">{{this.title}}</div>
-                        <div class="col-2">{{this.importance}}</div>
+                        <div class="col-2"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>{{this.importance}}</div>
                     </div>
                     <div class="myownrow">
-                        <input type="checkbox" {{#if this.finished}}checked{{/if}} class="col-2">
+                        <div class="col-2">
+                        <label for="finished">Finished&nbsp;</label><input type="checkbox" {{#if this.finished}}checked{{/if}}>
+                        </div>
                         <textarea class="col-10">{{this.description}}</textarea>
                     </div>
                 </div>
