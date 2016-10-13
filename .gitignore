@@ -40,3 +40,5 @@ bower_components
 .node_repl_history
 
 /public/vendor
+/public/stylesheets/style.css.map
+/public/stylesheets/style.css
