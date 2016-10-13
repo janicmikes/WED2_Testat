@@ -1,19 +1,16 @@
-<button type="button" class="btn btn-primary">Create new Note</button>
-<select>
-    <option>Default Style</option>
-    <option>Dark Style</option>
-</select>
+<a href="/notes/new" class="btn btn-primary">Create new Note</a>
+<form action="/" method="psot">
+    <select>
+        <option>Default Style</option>
+        <option>Dark Style</option>
+    </select>
+    <input class="btn btn-primary" type="submit" />
+</form>
 <br>
 <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-primary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" checked>By finish Date
-    </label>
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option2" autocomplete="off">By create Date
-    </label>
-    <label class="btn btn-primary">
-        <input type="radio" name="options" id="option3" autocomplete="off">By Importance
-    </label>
+    <a href="?order=finish" class="btn btn-primary active">By finish Date</a>
+    <a href="?order=create" class="btn btn-primary">By create Date</a>
+    <a href="?order=importance" class="btn btn-primary">By Importance</a>
 </div>
 <div class="btn-group pull-md-right">
     <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
