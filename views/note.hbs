@@ -1,4 +1,5 @@
 <form method="{{method}}" action="/note">
+    <h1>Neue Todo</h1>
     <label>Title</label>
     <input type="text" placeholder="Title" required />
     <br>
@@ -7,10 +8,25 @@
     </textarea>
     <br>
     <label>Importance</label>
-    <input type="number" min="0" max="5" />
+
+    <!--TODO Slider geht noch nicht richtig-->
+    <form oninput="outImp.value=parseInt(importance.name)">
+        <input type="range" id="importance" min="1" max="5" list="importances"/>
+        <datalist id="importances">
+            <option name="very low" value="1"></option>
+            <option name="low" value="2"></option>
+            <option name="medium" value="3"></option>
+            <option name="high" value="4"></option>
+            <option name="very high" value="5"></option>
+        </datalist>
+        <output name="outImp" for="importance" value="medium"></output>
+    </form>
+
     <br>
     <label>Due date</label>
     <input type="datetime" />
+    <br>
+    <input type="checkbox" value="Done!" >
     <br>
     <input type="submit" value="Save">
     <br>
