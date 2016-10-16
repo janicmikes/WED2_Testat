@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var notes = require('../controller/notesController');
 
 /* GET notes listing. */
 router.get('/', function (req, res, next) {
@@ -16,8 +17,6 @@ router.put('/new', function (req, res, next) {
 });
 
 /* Edit note */
-router.post('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
+router.post('/', notes.createNote);
 
 module.exports = router;

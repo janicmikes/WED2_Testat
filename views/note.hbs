@@ -1,34 +1,28 @@
-<form method="{{method}}" action="/note">
+<form method="{{method}}" action="/notes" >
     <h1>Neue Todo</h1>
     <label>Title</label>
-    <input type="text" placeholder="Title" required />
+    <input type="text" id="InputNewNoteTitle" placeholder="Title" required />
     <br>
     <label>Description</label>
-    <textarea rows="4" cols="40">
+    <textarea id="InputNewNoteDescription" rows="4" cols="40">
     </textarea>
     <br>
     <label>Importance</label>
-
-    <!--TODO Slider geht noch nicht richtig-->
-    <form oninput="outImp.value=parseInt(importance.name)">
-        <input type="range" id="importance" min="1" max="5" list="importances"/>
-        <datalist id="importances">
-            <option name="very low" value="1"></option>
-            <option name="low" value="2"></option>
-            <option name="medium" value="3"></option>
-            <option name="high" value="4"></option>
-            <option name="very high" value="5"></option>
-        </datalist>
-        <output name="outImp" for="importance" value="medium"></output>
-    </form>
-
+    low
+    <input type="radio" name="importance" value="1">
+    <input type="radio" name="importance" value="2">
+    <input type="radio" name="importance" value="3" checked>
+    <input type="radio" name="importance" value="4">
+    <input type="radio" name="importance" value="5">
+    high
     <br>
     <label>Due date</label>
-    <input type="datetime" />
+    <input type="date" id="InputNewNoteDateTime">
     <br>
-    <input type="checkbox" value="Done!" >
+    <label>Done</label>
+    <input type="checkbox" id="InputNewNoteDone" value="Done!" >
     <br>
-    <input type="submit" value="Save">
-    <br>
-    <input type="reset" value="Cancel">
+    <label></label>
+    <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
+    <button class="btn btn-primary" id="BtnNewNoteCancel" type="reset" value="Cancel">Reset</button>
 </form>
