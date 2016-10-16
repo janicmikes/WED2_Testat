@@ -1,26 +1,25 @@
 <form method="{{method}}" action="/notes" >
     <h1>Neue Todo</h1>
     <label>Title</label>
-    <input type="text" id="InputNewNoteTitle" placeholder="Title" required />
+    <input type="text" name="noteTitle" id="InputNewNoteTitle" placeholder="Title" required />
     <br>
     <label>Description</label>
-    <textarea id="InputNewNoteDescription" rows="4" cols="40">
-    </textarea>
+    <textarea name="noteDescription" id="InputNewNoteDescription" rows="4" cols="40"></textarea>
     <br>
     <label>Importance</label>
     low
-    <input type="radio" name="importance" value="1">
-    <input type="radio" name="importance" value="2">
-    <input type="radio" name="importance" value="3" checked>
-    <input type="radio" name="importance" value="4">
-    <input type="radio" name="importance" value="5">
+    <input type="radio" name="noteImportance" value="1">
+    <input type="radio" name="noteImportance" value="2">
+    <input type="radio" name="noteImportance" value="3" checked>
+    <input type="radio" name="noteImportance" value="4">
+    <input type="radio" name="noteImportance" value="5">
     high
     <br>
     <label>Due date</label>
-    <input type="date" id="InputNewNoteDateTime">
+    <input name="noteDueDate" type="date" id="InputNewNoteDateTime">
     <br>
     <label>Done</label>
-    <input type="checkbox" id="InputNewNoteDone" value="Done!" >
+    <input name="noteDone" type="checkbox" id="InputNewNoteDone" value="Done!" >
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
