@@ -40,6 +40,14 @@ bower_components
 .node_repl_history
 
 .idea
+*~
+.DS_Store
+#IntelliJ Files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.lock
 
 /public/vendor
 /public/stylesheets/style.css.map
