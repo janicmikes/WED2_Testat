@@ -28,7 +28,7 @@
 <ul>
     {{#each notes}}
         <li>
-            <div class="myownrow">
+            <div id="container">
                 <div class="col-10">
                     <div class="myownrow">
                         <div class="col-2">{{this.dueDate}}&nbsp;</div>
@@ -43,11 +43,9 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <a href="/notes/edit/1" class="btn btn-primary pull-xs-right">Edit</a>
+                    <a href="/notes/edit/{{this._id}}" class="btn btn-primary pull-xs-right">Edit</a>
                 </div>
             </div>
-
-
         </li>
     {{else}}
         <li>
