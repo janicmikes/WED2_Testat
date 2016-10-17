@@ -1,6 +1,6 @@
 var path = require('path');
 var Datastore = require('nedb');
-var db = new Datastore({ filename: path.join(__dirname, 'data/notes.db'), autoload: true});
+var db = new Datastore({ filename: './data/notes.db', autoload: true});
 
 function Note(title, description, importance, dueDate, done)
 {
@@ -18,7 +18,7 @@ function enrich(data){
     data.importance4 = false;
     data.importance5 = false;
 
-    switch (data.importance){
+    switch (parseInt(data.importance)){
         case 1: data.importance1 = true; break;
         case 2: data.importance2 = true; break;
         case 3: data.importance3 = true; break;
@@ -41,8 +41,8 @@ function publicAddNote(title, description, importance, dueDate, done, callback)
 
 function publicGet(id, callback)
 {
-    db.findOne({ _id: id }, function (err, doc) {
-        callback( err, doc);
+    db.findOne({ _id: id }, function (err, data) {
+        callback( err, enrich(data));
     });
 }
 

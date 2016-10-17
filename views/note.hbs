@@ -1,29 +1,29 @@
 {{#if note}}
-    <form method="post" action="/notes/{{note.id}}">
+    <form method="post" action="/notes/{{note._id}}">
 {{else}}
     <form method="post" action="/notes/new">
 {{/if}}
     <h1>Neue Todo</h1>
     <label>Title</label>
-    <input type="text" name="noteTitle" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
+    <input type="text" name="title" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
     <br>
     <label>Description</label>
-    <textarea name="noteDescription" id="InputNewNoteDescription" rows="4" cols="40" value="{{note.description}}"></textarea>
+    <textarea name="description" id="InputNewNoteDescription" rows="4" cols="40">{{note.description}}</textarea>
     <br>
     <label>Importance</label>
     low
-    <input type="radio" id="importance-1" name="noteImportance" value="1" {{#if note.importance1}}checked{{/if}}><label for="importance-1"></label>
-    <input type="radio" id="importance-2" name="noteImportance" value="2" {{#if note.importance2}}checked{{/if}}><label for="importance-2"></label>
-    <input type="radio" id="importance-3" name="noteImportance" value="3" {{#if note.importance3}}checked{{/if}}><label for="importance-3"></label>
-    <input type="radio" id="importance-4" name="noteImportance" value="4" {{#if note.importance4}}checked{{/if}}><label for="importance-4"></label>
-    <input type="radio" id="importance-5" name="noteImportance" value="5" {{#if note.importance5}}checked{{/if}}><label for="importance-5"></label>
+    <input type="radio" id="importance-1" name="importance" value="1" {{#if note.importance1}}checked{{/if}}><label for="importance-1"></label>
+    <input type="radio" id="importance-2" name="importance" value="2" {{#if note.importance2}}checked{{/if}}><label for="importance-2"></label>
+    <input type="radio" id="importance-3" name="importance" value="3" {{#if note.importance3}}checked{{/if}}><label for="importance-3"></label>
+    <input type="radio" id="importance-4" name="importance" value="4" {{#if note.importance4}}checked{{/if}}><label for="importance-4"></label>
+    <input type="radio" id="importance-5" name="importance" value="5" {{#if note.importance5}}checked{{/if}}><label for="importance-5"></label>
     high
     <br>
     <label>Due date</label>
-    <input name="noteDueDate" type="date" id="InputNewNoteDateTime" {{note.dueDate}}>
+    <input name="dueDate" type="date" id="InputNewNoteDateTime" {{note.dueDate}}>
     <br>
     <label>Done</label>
-    <input name="noteDone" type="checkbox" id="InputNewNoteDone" value="Done!" {{#if note.done}}checked{{/if}}>
+    <input name="done" type="checkbox" id="InputNewNoteDone" value="Done!" {{#if note.done}}checked{{/if}}>
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
