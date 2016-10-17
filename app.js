@@ -10,9 +10,6 @@ var notes = require('./routes/notes');
 
 var app = express();
 
-var Datastore = require('nedb')
-var db = new Datastore({filename: 'data/notes.nedb', autoload: true});
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

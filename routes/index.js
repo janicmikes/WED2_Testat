@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var note = require('../services/notesStore.js');
+var notes = require('../controller/notesController');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    note.all(function (err, docs) {
-        res.render('index', {notes: docs});
-    });
+router.get('/', function (req, res) {
+    notes.getAll(req, res);
 });
 
 module.exports = router;

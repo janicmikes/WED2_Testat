@@ -1,15 +1,21 @@
-/**
- * Created by Yanick on 16.10.2016.
- */
 var store = require("../services/notesStore");
 
-module.exports.createNote = function(req, res)
-{
-    var order = store.add(req.body.title, req.body.description, req.body.noteImportance, req.body.noteDueDate, req.body.noteDone, function (err, note) {
-        res.format({
-            'text/html': function(){
-                res.render("index");
-            }
-        });
-    })
+create = function (req, res) {
+    var order = store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
+        res.redirect("/");
+    });
 }
+
+getAll = function (req, res) {
+    store.all(function (err, data) {
+        res.render('index', {notes: data});
+    });
+}
+
+get = function (req, res) {
+    store.get(req.params.id, function (err, data) {
+        res.render('note', {note: data});
+    });
+}
+
+module.exports = {create: create, get: get, getAll: getAll};
