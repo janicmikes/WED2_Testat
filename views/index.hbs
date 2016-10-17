@@ -1,35 +1,53 @@
-<a href="/notes/new" class="btn btn-primary">Create new Note</a>
-<form action="/" method="psot">
-    <select>
-        <option>Default Style</option>
-        <option>Dark Style</option>
-    </select>
-    <input class="btn btn-primary" type="submit" />
-</form>
-<br>
-<div class="btn-group" data-toggle="buttons">
-    <a href="?order=finish" class="btn btn-primary active">By finish Date</a>
-    <a href="?order=create" class="btn btn-primary">By create Date</a>
-    <a href="?order=importance" class="btn btn-primary">By Importance</a>
+<div class="myownrow">
+    <div class="col-3">
+        <a href="/notes/new" class="btn btn-primary">Create new Note</a>
+    </div>
+    <div class="col-9">
+        <form action="" method="get" class="pull-md-right">
+            <select name="theme">
+                <option value="default">Default Style</option>
+                <option value="dark">Dark Style</option>
+            </select>
+            <input class="btn btn-primary" type="submit" value="Submit"/>
+        </form>
+    </div>
+
 </div>
-<div class="btn-group pull-md-right">
-    <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off">
-        Show finished
-    </button>
+<div class="myownrow">
+
+    <div class="btn-group col-9" data-toggle="buttons">
+        <a href="?order=finish" class="btn btn-primary active col-3">By finish Date</a>
+        <a href="?order=create" class="btn btn-primary col-3">By create Date</a>
+        <a href="?order=importance" class="btn btn-primary col-3">By Importance</a>
+    </div>
+    <div class="btn-group col-3">
+        <a class="btn btn-primary active pull-xs-right">Show finished</a>
+    </div>
 </div>
 
 <ul>
     {{#each notes}}
         <li>
-            <p>
-                <span>{{this.dueDate}}</span>
-                <span><a href="/notes/edit/{{this._id}}" >{{this.title}}</a></span>
-                <span>{{this.importance}}</span>
-            </p>
-            <div>
-                <input type="checkbox" {{#if this.finished}}checked{{/if}}>
-                <textarea>{{this.description}}</textarea>
+            <div class="myownrow">
+                <div class="col-10">
+                    <div class="myownrow">
+                        <div class="col-2">{{this.dueDate}}&nbsp;</div>
+                        <div class="col-8 todotitle">{{this.title}}</div>
+                        <div class="col-2"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>{{this.importance}}</div>
+                    </div>
+                    <div class="myownrow">
+                        <div class="col-2">
+                        <label for="finished">Finished&nbsp;</label><input type="checkbox" {{#if this.finished}}checked{{/if}}>
+                        </div>
+                        <textarea class="col-10">{{this.description}}</textarea>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <a href="/notes/edit/1" class="btn btn-primary pull-xs-right">Edit</a>
+                </div>
             </div>
+
+
         </li>
     {{else}}
         <li>
@@ -37,5 +55,3 @@
         </li>
     {{/each}}
 </ul>
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
