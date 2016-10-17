@@ -53,5 +53,10 @@ function publicAll(callback)
     });
 }
 
+function update(id, title, description, importance, dueDate, done, callback){
+    db.update({ _id: id }, { $set: { title: title, description: description, importance: importance, dueDate: dueDate, done: done } }, { multi: false }, function (err, numReplaced) {
+        callback(err, numReplaced);
+    });
+}
 
-module.exports = {add : publicAddNote, get : publicGet, all : publicAll};
+module.exports = {add : publicAddNote, get : publicGet, all : publicAll, update: update};

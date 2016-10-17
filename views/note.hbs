@@ -1,5 +1,5 @@
 {{#if note}}
-    <form method="post" action="/notes/{{note._id}}">
+    <form method="post" action="/notes/edit/{{note._id}}">
 {{else}}
     <form method="post" action="/notes/new">
 {{/if}}
@@ -20,7 +20,7 @@
     high
     <br>
     <label>Due date</label>
-    <input name="dueDate" type="date" id="InputNewNoteDateTime" {{note.dueDate}}>
+    <input name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
     <br>
     <label>Done</label>
     <input name="done" type="checkbox" id="InputNewNoteDone" value="Done!" {{#if note.done}}checked{{/if}}>

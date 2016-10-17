@@ -1,7 +1,7 @@
 var store = require("../services/notesStore");
 
 create = function (req, res) {
-    var order = store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
+    store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
         res.redirect("/");
     });
 }
@@ -18,4 +18,10 @@ get = function (req, res) {
     });
 }
 
-module.exports = {create: create, get: get, getAll: getAll};
+update = function(req, res){
+    store.update(req.params.id, req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, numReplaced){
+        res.redirect("/");
+    });
+}
+
+module.exports = {create: create, get: get, getAll: getAll, update: update};
