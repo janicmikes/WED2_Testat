@@ -23,17 +23,18 @@
         <li>
             <p>
                 <span>{{this.due}}</span>
-                <span>{{this.title}}</span>
+                <span><a href="/notes/{{this.id}}" >{{this.title}}</a></span>
                 <span>{{this.importance}}</span>
             </p>
             <div>
                 <input type="checkbox" {{#if this.finished}}checked{{/if}}>
                 <textarea>{{this.description}}</textarea>
             </div>
-
         </li>
     {{else}}
-
+        <li>
+            No Notes available
+        </li>
     {{/each}}
 </ul>
 <h1>{{title}}</h1>

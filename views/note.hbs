@@ -1,14 +1,19 @@
-<form method="{{method}}" action="/notes" >
+{{#if note}}
+    <form method="post" action="/notes/{{note.id}}">
+{{else}}
+    <form method="post" action="/notes/new">
+{{/if}}
     <h1>Neue Todo</h1>
     <label>Title</label>
-    <input type="text" name="noteTitle" id="InputNewNoteTitle" placeholder="Title" required />
+    <input type="text" name="noteTitle" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
     <br>
     <label>Description</label>
-    <textarea name="noteDescription" id="InputNewNoteDescription" rows="4" cols="40"></textarea>
+    <textarea name="noteDescription" id="InputNewNoteDescription" rows="4" cols="40" value="{{note.description}}"></textarea>
     <br>
     <label>Importance</label>
     low
-    <input type="radio" name="noteImportance" value="1">
+
+        <input type="radio" name="noteImportance" value="1" {{if (note.importance == 1)}}checked{{/if}}>
     <input type="radio" name="noteImportance" value="2">
     <input type="radio" name="noteImportance" value="3" checked>
     <input type="radio" name="noteImportance" value="4">
@@ -19,7 +24,7 @@
     <input name="noteDueDate" type="date" id="InputNewNoteDateTime">
     <br>
     <label>Done</label>
-    <input name="noteDone" type="checkbox" id="InputNewNoteDone" value="Done!" >
+    <input name="noteDone" type="checkbox" id="InputNewNoteDone" value="Done!">
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>

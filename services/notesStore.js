@@ -1,21 +1,18 @@
-/**
- * Created by Yanick on 16.10.2016.
- */
 var Datastore = require('nedb');
 var db = new Datastore({ filename: './data/notes.db', autoload: true});
 
-function Note(noteTitle, noteDescription, noteImportance, noteDueDate, noteDone)
+function Note(title, description, importance, dueDate, done)
 {
-    this.noteTitle = noteTitle;
-    this.noteDescription = noteDescription;
-    this.noteImportance = noteImportance;
-    this.noteDueDate = noteDueDate;
-    this.noteDone = noteDone;
+    this.title = title;
+    this.description = description;
+    this.importance = importance;
+    this.dueDate = dueDate;
+    this.done = done;
 }
 
-function publicAddNote(noteTitle, noteDescription, noteImportance, noteDueDate, noteDone, callback)
+function publicAddNote(title, description, importance, dueDate, done, callback)
 {
-    var note = new Note(noteTitle, noteDescription, noteImportance, noteDueDate, noteDone);
+    var note = new Note(title, description, importance, dueDate, done);
     db.insert(note, function(err, newDoc){
         if(callback){
             callback(err, newDoc);
@@ -30,7 +27,7 @@ function publicGet(id, callback)
     });
 }
 
-function publicAll()
+function publicAll(callback)
 {
     db.find({}, function (err, docs) {
         callback( err, docs);

@@ -7,13 +7,14 @@ router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
-router.get('/new', function (req, res, next) {
-    res.render('note', {method: "post", id: 1});
+router.get('/edit/:id/', function (req, res){
+    notes.get(req.params.id, function (err, note) {
+        res.render('note', {data: note});
+    });
 });
 
-/* Create new note */
-router.put('/new', function (req, res, next) {
-    res.send('respond with a resource');
+router.get('/new', function (req, res, next) {
+    res.render('note');
 });
 
 /* Edit note */
