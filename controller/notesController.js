@@ -7,7 +7,22 @@ create = function (req, res) {
 }
 
 getAll = function (req, res) {
-    store.all(function (err, data) {
+    var filter = req.query.show;
+    filter = filter == "all" ? {} : { done: false };
+
+    var orderBy = req.query.order;
+
+    var direction = req.query.direction == "desc" ? -1 : 1;
+
+    switch(orderBy){
+        case "finish": orderBy = { finishDate: 1 * direction }; break;
+        case "create": orderBy = { createDate: 1 * direction }; break;
+        case "importance": orderBy = { importance: -1 * direction }; break;
+        default: orderBy = { createDate: -1 }
+    }
+
+
+    store.all(filter, orderBy, function (err, data) {
         res.render('index', {notes: data});
     });
 }
