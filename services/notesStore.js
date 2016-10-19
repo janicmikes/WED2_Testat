@@ -7,27 +7,9 @@ function Note(title, description, importance, dueDate, done)
     this.description = description;
     this.importance = importance;
     this.dueDate = dueDate;
-    this.done = done;
+    this.done = done?"true":"false";
     this.createDate = Date.now();
     this.finishDate = null;
-}
-
-function enrich(data){
-    data.importance1 = false;
-    data.importance2 = false;
-    data.importance3 = false;
-    data.importance4 = false;
-    data.importance5 = false;
-
-    switch (parseInt(data.importance)){
-        case 1: data.importance1 = true; break;
-        case 2: data.importance2 = true; break;
-        case 3: data.importance3 = true; break;
-        case 4: data.importance4 = true; break;
-        case 5: data.importance5 = true; break;
-        default: data.importance3 = true; break;
-    }
-    return data;
 }
 
 function publicAddNote(title, description, importance, dueDate, done, callback)
@@ -43,14 +25,14 @@ function publicAddNote(title, description, importance, dueDate, done, callback)
 function publicGet(id, callback)
 {
     db.findOne({ _id: id }, function (err, data) {
-        callback( err, enrich(data));
+        callback( err, data);
     });
 }
 
 function publicAll(filter, order, callback)
 {
     db.find(filter).sort(order).exec(function (err, data) {
-        callback(err, enrich(data));
+        callback(err, data);
     });
 }
 

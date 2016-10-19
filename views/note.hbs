@@ -1,31 +1,21 @@
-{{#if note}}
-    <form method="post" action="/notes/edit/{{note._id}}">
-{{else}}
-    <form method="post" action="/notes/new">
-{{/if}}
+<form method="post" action="{{#if note}}/notes/edit/{{note._id}}{{else}}/notes/new{{/if}}">
     <h1>Neue Todo</h1>
     <label>Title</label>
-    <input type="text" name="title" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
+    <input class="form-control" type="text" name="title" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
     <br>
     <label>Description</label>
-    <textarea name="description" id="InputNewNoteDescription" rows="4" cols="40">{{note.description}}</textarea>
+    <textarea class="form-control" name="description" id="InputNewNoteDescription" rows="4" cols="40">{{note.description}}</textarea>
     <br>
     <label>Importance</label>
-    low
-    <input type="radio" id="importance-1" name="importance" value="1" {{#if note.importance1}}checked{{/if}}><label for="importance-1"></label>
-    <input type="radio" id="importance-2" name="importance" value="2" {{#if note.importance2}}checked{{/if}}><label for="importance-2"></label>
-    <input type="radio" id="importance-3" name="importance" value="3" {{#if note.importance3}}checked{{/if}}><label for="importance-3"></label>
-    <input type="radio" id="importance-4" name="importance" value="4" {{#if note.importance4}}checked{{/if}}><label for="importance-4"></label>
-    <input type="radio" id="importance-5" name="importance" value="5" {{#if note.importance5}}checked{{/if}}><label for="importance-5"></label>
-    high
+    <input class="form-control" type="number" id="importance" name="importance" max="5" min="1" value="1" {{#if note.importance1}}checked{{/if}}><label for="importance-1"></label>
     <br>
     <label>Due date</label>
-    <input name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
+    <input class="form-control" name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
     <br>
     <label>Done</label>
-    <input name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.done}}checked{{/if}}>
+    <input class="form-control" name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.done}}checked{{/if}}>
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
-    <button class="btn btn-primary" id="BtnNewNoteCancel" type="reset" value="Cancel">Reset</button>
+    <a href="/{{params}}" class="btn btn-secondary" id="BtnNewNoteCancel" type="reset" value="Cancel">Reset</a>
 </form>
