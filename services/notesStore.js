@@ -1,4 +1,3 @@
-var path = require('path');
 var Datastore = require('nedb');
 var db = new Datastore({ filename: './data/notes.db', autoload: true});
 
@@ -9,6 +8,8 @@ function Note(title, description, importance, dueDate, done)
     this.importance = importance;
     this.dueDate = dueDate;
     this.done = done;
+    this.createDate = Date.now();
+    this.finishDate = null;
 }
 
 function enrich(data){
@@ -46,15 +47,19 @@ function publicGet(id, callback)
     });
 }
 
-function publicAll(callback)
+function publicAll(filter, order, callback)
 {
-    db.find({}, function (err, data) {
+    db.find(filter).sort(order).exec(function (err, data) {
         callback(err, enrich(data));
     });
 }
 
 function update(id, title, description, importance, dueDate, done, callback){
-    db.update({ _id: id }, { $set: { title: title, description: description, importance: importance, dueDate: dueDate, done: done } }, { multi: false }, function (err, numReplaced) {
+    var finishDate = null;
+    if (done == "true"){
+        finishDate = Date.now();
+    }
+    db.update({ _id: id }, { $set: { title: title, description: description, importance: importance, dueDate: dueDate, done: done, finishDate: finishDate } }, { multi: false }, function (err, numReplaced) {
         callback(err, numReplaced);
     });
 }

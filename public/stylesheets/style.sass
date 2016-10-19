@@ -1,24 +1,76 @@
+$gray-dark:                 #373a3c !default
+$gray:                      #55595c !default
+$gray-light:                #818a91 !default
+$gray-lighter:              #eceeef !default
+$gray-lightest:             #f7f7f9 !default
+
+$brand-primary:             #0275d8 !default
+$brand-success:             #5cb85c !default
+$brand-info:                #5bc0de !default
+$brand-warning:             #f0ad4e !default
+$brand-danger:              #d9534f !default
+$brand-inverse:             $gray-dark !default
+
 body
   padding: 50px
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif
+  background-color: $gray-lightest
+
+  &.dark
+    background-color: $gray-dark
 
 a
-  color: #00B7FF
+  color: $brand-primary
+  text-decoration: none
 
 *
   box-sizing: border-box
 
-.btn-group>.btn:not(.dropdown-toggle)
-  border-radius: .25rem!important
-  margin-bottom: 0.5rem
-
-#container
+.container
   display: flex
-  justify-content: center
+  align-content: space-between
+  justify-content: space-between
+  flex-flow: row wrap
+  align-items: center
+  margin-bottom: 1rem
+
+.flex-start
+  align-items: flex-start
+
+.flex-end
+  align-items: flex-end
+
+.flex-fill
+  flex-grow: 1
 
 ul
   list-style: none
   padding: 0
 
-.todotitle
-  font-weight: bold
+li
+  background-color: $gray-lighter
+
+li:nth-child(2n)
+  background-color: $gray-light
+
+/* Basic Bootstrapish styles */
+.btn
+  display: inline-block
+  text-align: center
+  border: 1px solid transparent
+  padding: .5rem 1rem
+  font-size: 1rem
+  border-radius: .25rem
+
+.btn-primary
+  color: #fff
+  background-color: $brand-primary
+  border-color: $brand-primary
+  &:hover
+    color: #fff
+    background-color: darken($brand-primary, 10%)
+    border-color: darken($brand-primary, 10%)
+  .active
+    color: #fff
+    background-color: darken($brand-primary, 10%)
+    border-color: darken($brand-primary, 10%)

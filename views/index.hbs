@@ -1,9 +1,9 @@
-<div class="myownrow">
-    <div class="col-3">
+<div class="container">
+    <div>
         <a href="/notes/new" class="btn btn-primary">Create new Note</a>
     </div>
-    <div class="col-9">
-        <form action="" method="get" class="pull-md-right">
+    <div>
+        <form action="" method="get">
             <select name="theme">
                 <option value="default">Default Style</option>
                 <option value="dark">Dark Style</option>
@@ -11,39 +11,34 @@
             <input class="btn btn-primary" type="submit" value="Submit"/>
         </form>
     </div>
-
 </div>
-<div class="myownrow">
+<div class="container">
 
-    <div class="btn-group col-9" data-toggle="buttons">
-        <a href="?order=finish" class="btn btn-primary active col-3">By finish Date</a>
-        <a href="?order=create" class="btn btn-primary col-3">By create Date</a>
-        <a href="?order=importance" class="btn btn-primary col-3">By Importance</a>
+    <div data-toggle="buttons">
+        <a href="?order=finish" class="btn btn-primary active">By finish Date</a>
+        <a href="?order=create" class="btn btn-primary">By create Date</a>
+        <a href="?order=importance" class="btn btn-primary">By Importance</a>
     </div>
-    <div class="btn-group col-3">
-        <a class="btn btn-primary active pull-xs-right">Show finished</a>
-    </div>
+    <a href="?show=finished" class="btn btn-primary">Show finished</a>
 </div>
 
 <ul>
     {{#each notes}}
         <li>
-            <div id="container">
-                <div class="col-10">
-                    <div class="myownrow">
-                        <div class="col-2">{{this.dueDate}}&nbsp;</div>
-                        <div class="col-8 todotitle">{{this.title}}</div>
-                        <div class="col-2"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span>{{this.importance}}</div>
+            <div class="container">
+                <div class="flex-fill">
+                    <div class="container">
+                        <div>{{this.dueDate}}&nbsp;</div>
+                        <div>{{this.title}}</div>
+                        <div>{{this.importance}}</div>
                     </div>
-                    <div class="myownrow">
-                        <div class="col-2">
-                        <label for="finished">Finished&nbsp;</label><input type="checkbox" {{#if this.finished}}checked{{/if}}>
-                        </div>
-                        <textarea class="col-10">{{this.description}}</textarea>
+                    <div class="container">
+                        <div><label for="finished">Finished&nbsp;</label><input type="checkbox" {{#if this.finished}}checked{{/if}}></div>
+                        <div class="flex-fill">{{this.description}}</div>
                     </div>
                 </div>
-                <div class="col-2">
-                    <a href="/notes/edit/{{this._id}}" class="btn btn-primary pull-xs-right">Edit</a>
+                <div>
+                    <a href="/notes/edit/{{this._id}}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </li>
