@@ -14,7 +14,6 @@ $brand-inverse:             $gray-dark !default
 body
   padding: 50px
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif
-  background-color: $gray-lightest
 
   &.dark
     background-color: $gray-dark
@@ -61,6 +60,22 @@ li:nth-child(2n)
   padding: .5rem 1rem
   font-size: 1rem
   border-radius: .25rem
+  &.active
+    box-shadow: inset 0px 3px 17px darkgray
+
+
+.btn-secondary
+  color: $gray-dark
+  background-color: $gray-lighter
+  border-color: $gray-light
+  &:hover
+    color: $gray-dark
+    background-color: darken($gray-lighter, 25%) !important
+    border-color: darken($gray-light, 30%)
+  &.active
+    color: $gray-dark
+    background-color: darken($gray-lighter, 17%)
+    border-color: darken($gray-light, 25%)
 
 .btn-primary
   color: #fff
@@ -68,9 +83,39 @@ li:nth-child(2n)
   border-color: $brand-primary
   &:hover
     color: #fff
-    background-color: darken($brand-primary, 10%)
-    border-color: darken($brand-primary, 10%)
-  .active
+    background-color: darken($brand-primary, 20%)
+    border-color: darken($brand-primary, 30%)
+  &.active
     color: #fff
-    background-color: darken($brand-primary, 10%)
-    border-color: darken($brand-primary, 10%)
+    background-color: darken($brand-primary, 17%)
+    border-color: darken($brand-primary, 25%)
+
+.alert
+  padding: 1rem
+  margin-bottom: 1rem
+  border: 1px solid transparent
+  border-radius: .25rem
+
+.alert-info
+  background-color: #d9edf7
+  border-color: #bcdff1
+  color: #31708f
+
+.form-control
+  display: block
+  width: 100%
+  padding: .5rem .75rem
+  font-size: 1rem
+  line-height: 1.25
+  color: #55595c
+  background-color: #fff
+  background-image: none
+  -webkit-background-clip: padding-box
+  background-clip: padding-box
+  border: 1px solid rgba(0,0,0,.15)
+  border-radius: .25rem
+  &:focus
+    color: #55595c
+    background-color: #fff
+    border-color: #66afe9
+    outline: 0

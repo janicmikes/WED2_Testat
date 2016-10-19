@@ -3,23 +3,17 @@
         <a href="/notes/new" class="btn btn-primary">Create new Note</a>
     </div>
     <div>
-        <form action="" method="get">
-            <select name="theme">
-                <option value="default">Default Style</option>
-                <option value="dark">Dark Style</option>
-            </select>
-            <input class="btn btn-primary" type="submit" value="Submit"/>
-        </form>
+        <a href="/?theme={{othertheme}}{{params}}" class="btn btn-secondary">Style switcher</a>
     </div>
 </div>
 <div class="container">
 
     <div data-toggle="buttons">
-        <a href="?order=finish" class="btn btn-primary active">By finish Date</a>
-        <a href="?order=create" class="btn btn-primary">By create Date</a>
-        <a href="?order=importance" class="btn btn-primary">By Importance</a>
+        <a href="?order=finish" class="btn btn-secondary {{buttonclass.finish}}">By finish Date</a>
+        <a href="?order=create" class="btn btn-secondary {{buttonclass.create}}">By create Date</a>
+        <a href="?order=importance" class="btn btn-secondary {{buttonclass.importance}}">By Importance</a>
     </div>
-    <a href="?show=finished" class="btn btn-primary">Show finished</a>
+    <a href="?show=all" class="btn btn-secondary {{buttonclass.filter}}">Show finished</a>
 </div>
 
 <ul>
@@ -28,13 +22,13 @@
             <div class="container">
                 <div class="flex-fill">
                     <div class="container">
-                        <div>{{this.dueDate}}&nbsp;</div>
+                        <div>{{this.dueDate}}</div>
                         <div>{{this.title}}</div>
                         <div>{{this.importance}}</div>
                     </div>
                     <div class="container">
-                        <div><label for="finished">Finished&nbsp;</label><input type="checkbox" {{#if this.finished}}checked{{/if}}></div>
-                        <div class="flex-fill">{{this.description}}</div>
+                        <div><input type="checkbox" {{#if this.finished}}checked{{/if}} disabled><label for="finished">Finished&nbsp;</label></div>
+                        <textarea class="flex-fill" disabled>{{this.description}}</textarea>
                     </div>
                 </div>
                 <div>
@@ -44,7 +38,9 @@
         </li>
     {{else}}
         <li>
-            No Notes available
+            <div class="alert alert-info" role="alert">
+                No Todo found
+            </div>
         </li>
     {{/each}}
 </ul>
