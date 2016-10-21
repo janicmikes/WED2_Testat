@@ -44,7 +44,7 @@ getAll = function (req, res) {
         filter = {};
     } else {
         buttons.filter = "";
-        filter = { done: "false" }
+        filter = { done: false }
     }
 
 

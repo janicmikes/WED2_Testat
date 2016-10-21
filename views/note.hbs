@@ -13,7 +13,7 @@
     <input class="form-control" name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
     <br>
     <label>Done</label>
-    <input class="form-control" name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.finishDate}}checked{{/if}}>
+    <input class="form-control" name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.done}}checked{{/if}}>
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>

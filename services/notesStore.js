@@ -40,6 +40,8 @@ function update(id, title, description, importance, dueDate, done, callback){
     var finishDate = null;
     if (done == "true"){
         finishDate = Date.now();
+    } else {
+        done = false;
     }
     db.update({ _id: id }, { $set: { title: title, description: description, importance: importance, dueDate: dueDate, done: done, finishDate: finishDate } }, { multi: false }, function (err, numReplaced) {
         callback(err, numReplaced);
