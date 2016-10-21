@@ -64,7 +64,7 @@ getAll = function (req, res) {
 
     switch(orderBy){
         case "finish":
-            orderBy = { finishDate: 1 * direction };
+            orderBy = { dueDate: 1 * direction };
             buttons.finish = "active" + direction?" asc":" desc";
             break;
         case "create": orderBy = { createDate: 1 * direction };
