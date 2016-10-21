@@ -9,9 +9,9 @@
 <div class="container">
 
     <div data-toggle="buttons">
-        <a href="?order=finish" class="btn btn-secondary {{buttonclass.finish}}">By finish Date</a>
-        <a href="?order=create" class="btn btn-secondary {{buttonclass.create}}">By create Date</a>
-        <a href="?order=importance" class="btn btn-secondary {{buttonclass.importance}}">By Importance</a>
+        <a href="?order=finish" class="btn btn-secondary {{buttons.finish}}">By finish Date</a>
+        <a href="?order=create" class="btn btn-secondary {{buttons.create}}">By create Date</a>
+        <a href="?order=importance" class="btn btn-secondary {{buttons.importance}}">By Importance</a>
     </div>
     <a href="?show=all" class="btn btn-secondary {{buttonclass.filter}}">Show finished</a>
 </div>
@@ -27,7 +27,7 @@
                         <div>{{this.importance}}</div>
                     </div>
                     <div class="container">
-                        <div><input type="checkbox" {{#if this.finished}}checked{{/if}} disabled><label for="finished">Finished&nbsp;</label></div>
+                        <div><input type="checkbox" {{#if this.finishDate}}checked{{/if}} disabled><label for="finished">Finished&nbsp;</label></div>
                         <textarea class="flex-fill" disabled>{{this.description}}</textarea>
                     </div>
                 </div>

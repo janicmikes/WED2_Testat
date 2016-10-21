@@ -13,9 +13,9 @@
     <input class="form-control" name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
     <br>
     <label>Done</label>
-    <input class="form-control" name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.done}}checked{{/if}}>
+    <input class="form-control" name="done" type="checkbox" id="InputNewNoteDone" value="true" {{#if note.finishDate}}checked{{/if}}>
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
-    <a href="/{{params}}" class="btn btn-secondary" id="BtnNewNoteCancel" type="reset" value="Cancel">Reset</a>
+    <a href="/{{params}}" class="btn btn-secondary" id="BtnNewNoteCancel" type="reset" value="Cancel">Cancel</a>
 </form>
