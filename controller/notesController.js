@@ -29,7 +29,9 @@ getAll = function (req, res) {
             class: "",
             action: "",
             baseaction: ""
-        }
+        },
+        show: "all",
+        showBtnState: "undone"
     };
     var query = req.query;
 
@@ -42,9 +44,11 @@ getAll = function (req, res) {
         buttons.filter.action = "/?"+req.query;
         query.filter = "";
         filter = {};
+        buttons.showBtnState = "undone";
     } else {
         buttons.filter = "";
-        filter = { done: false }
+        filter = { done: false };
+        buttons.showBtnState = "all";
     }
 
 
@@ -52,6 +56,11 @@ getAll = function (req, res) {
     var orderBy = req.query.order;
 
     var direction = req.query.direction == "desc" ? -1 : 1;
+    if (direction == -1) {
+        buttons.direction = true;
+    }
+    buttons.show = req.query.show;
+
 
     switch(orderBy){
         case "finish":
@@ -68,7 +77,6 @@ getAll = function (req, res) {
             orderBy = { createDate: -1 }
             buttons.create = "active" + direction?" asc":" desc";
     }
-
 
     store.all(filter, orderBy, function (err, data) {
         res.render('index', {buttons: buttons, notes: data});

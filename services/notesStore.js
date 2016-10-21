@@ -7,7 +7,7 @@ function Note(title, description, importance, dueDate, done)
     this.description = description;
     this.importance = importance;
     this.dueDate = dueDate;
-    this.done = done?"true":"false";
+    this.done = done?true:false;
     this.createDate = Date.now();
     this.finishDate = null;
 }
@@ -40,6 +40,7 @@ function update(id, title, description, importance, dueDate, done, callback){
     var finishDate = null;
     if (done == "true"){
         finishDate = Date.now();
+        done = true;
     } else {
         done = false;
     }

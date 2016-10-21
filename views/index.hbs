@@ -9,11 +9,11 @@
 <div class="container">
 
     <div data-toggle="buttons">
-        <a href="?order=finish" class="btn btn-secondary {{buttons.finish}}">By finish Date</a>
-        <a href="?order=create" class="btn btn-secondary {{buttons.create}}">By create Date</a>
-        <a href="?order=importance" class="btn btn-secondary {{buttons.importance}}">By Importance</a>
+        <a href="?show={{buttons.show}}&order=finish{{#if buttons.direction}}{{else}}&direction=desc{{/if}}" class="btn btn-secondary {{buttons.finish}}">By finish Date</a>
+        <a href="?show={{buttons.show}}&order=create{{#if buttons.direction}}{{else}}&direction=desc{{/if}}" class="btn btn-secondary {{buttons.create}}">By create Date</a>
+        <a href="?show={{buttons.show}}&order=importance{{#if buttons.direction}}{{else}}&direction=desc{{/if}}" class="btn btn-secondary {{buttons.importance}}">By Importance</a>
     </div>
-    <a href="?show=all" class="btn btn-secondary {{buttons.filter}}">Show finished</a>
+    <a href="?show={{buttons.showBtnState}}" class="btn btn-secondary {{buttons.filter}}">Show finished</a>
 </div>
 
 <ul>

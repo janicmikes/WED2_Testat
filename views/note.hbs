@@ -7,7 +7,7 @@
     <textarea class="form-control" name="description" id="InputNewNoteDescription" rows="4" cols="40">{{note.description}}</textarea>
     <br>
     <label>Importance</label>
-    <input class="form-control" type="number" id="importance" name="importance" max="5" min="1" value="1" {{#if note.importance1}}checked{{/if}}><label for="importance-1"></label>
+    <input class="form-control" type="number" id="importance" name="importance" max="5" min="1" value="{{note.importance}}" required>
     <br>
     <label>Due date</label>
     <input class="form-control" name="dueDate" type="date" id="InputNewNoteDateTime" value="{{note.dueDate}}">
