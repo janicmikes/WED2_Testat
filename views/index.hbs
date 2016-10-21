@@ -22,7 +22,13 @@
             <div class="container">
                 <div class="flex-fill">
                     <div class="container">
-                        <div>{{this.dueDate}}</div>
+                        <div>
+                            {{#if this.dueDate}}
+                                {{this.dueDate}}
+                            {{else}}
+                                due date not set!
+                            {{/if}}
+                        </div>
                         <div>{{this.title}}</div>
                         <div>{{this.importance}}</div>
                     </div>
