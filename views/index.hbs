@@ -30,7 +30,11 @@
                             {{/if}}
                         </div>
                         <div>{{this.title}}</div>
-                        <div>{{this.importance}}</div>
+                        <div>
+                            {{#drawStars this.importance }}
+                                {{this}}
+                            {{/drawStars}}
+                        </div>
                     </div>
                     <div class="container">
                         <div><input type="checkbox" {{#if this.finishDate}}checked{{/if}} disabled><label for="finished">Finished&nbsp;</label></div>
