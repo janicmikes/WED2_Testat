@@ -8,28 +8,16 @@ create = function (req, res) {
 
 getAll = function (req, res) {
     var filter = req.query.show;
-
+    var theme = req.query.theme ? req.query.theme : "";
     var buttons = {
         filter: {
             class: "",
             action: "",
             baseaction: ""
         },
-        finish: {
-            class: "",
-            action: "",
-            baseaction: ""
-        },
-        create: {
-            class: "",
-            action: "",
-            baseaction: ""
-        },
-        importance: {
-            class: "",
-            action: "",
-            baseaction: ""
-        },
+        finish: "",
+        create: "",
+        importance: "",
         show: "all",
         showBtnState: "undone"
     };
@@ -65,21 +53,21 @@ getAll = function (req, res) {
     switch(orderBy){
         case "finish":
             orderBy = { dueDate: 1 * direction };
-            buttons.finish = "active" + direction?" asc":" desc";
+            buttons.finish = direction ? "active asc" : "active desc";
             break;
         case "create": orderBy = { createDate: 1 * direction };
-            buttons.create = "active" + direction?" asc":" desc";
+            buttons.create = direction ? "active asc" : "active desc";
             break;
         case "importance": orderBy = { importance: -1 * direction };
-            buttons.importance = "active" + direction?" asc":" desc";
+            buttons.importance = direction ? "active asc" : "active desc";
             break;
         default:
             orderBy = { createDate: -1 }
-            buttons.create = "active" + direction?" asc":" desc";
+            buttons.create = direction ? "active asc" : "active desc";
     }
 
     store.all(filter, orderBy, function (err, data) {
-        res.render('index', {buttons: buttons, notes: data});
+        res.render('index', {title: "Notes - A WED2 Testat", theme: theme, buttons: buttons, notes: data});
     });
 };
 

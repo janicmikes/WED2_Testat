@@ -1,0 +1,123 @@
+body
+  padding: 50px
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif
+  background: $background
+  color: $text
+
+a
+  color: $brand-primary
+  text-decoration: none
+
+*
+  box-sizing: border-box
+
+.container
+  display: flex
+  align-content: space-between
+  justify-content: space-between
+  flex-flow: row wrap
+  align-items: center
+  margin-bottom: 1rem
+
+.flex-start
+  align-items: flex-start
+
+.flex-end
+  align-items: flex-end
+
+.flex-fill
+  flex-grow: 1
+
+ul
+  list-style: none
+  padding: 0
+
+li
+  background-color: $list
+  padding: 1.5rem
+  border: 1px solid $list-border
+  margin-bottom: 1rem
+
+li:nth-child(2n)
+  background-color: $list-alt
+
+/* Basic Bootstrapish styles */
+.btn
+  display: inline-block
+  text-align: center
+  border: 1px solid transparent
+  padding: .5rem 1rem
+  font-size: 1rem
+  border-radius: .25rem
+  &.active
+    box-shadow: inset 0px 3px 17px darkgray
+
+
+.btn-secondary
+  color: $gray-dark
+  background-color: $gray-lighter
+  border-color: $gray-light
+  &:hover
+    color: $gray-dark
+    background-color: darken($gray-lighter, 25%) !important
+    border-color: darken($gray-light, 30%)
+  &.active
+    color: $gray-dark
+    background-color: darken($gray-lighter, 17%)
+    border-color: darken($gray-light, 25%)
+
+.btn-primary
+  color: $white
+  background-color: $brand-primary
+  border-color: $brand-primary
+  &:hover
+    color: $white
+    background-color: darken($brand-primary, 20%)
+    border-color: darken($brand-primary, 30%)
+  &.active
+    color: $white
+    background-color: darken($brand-primary, 17%)
+    border-color: darken($brand-primary, 25%)
+
+.alert
+  padding: 1rem
+  margin-bottom: 1rem
+  border: 1px solid transparent
+  border-radius: .25rem
+
+.alert-info
+  background-color: lighten($brand-info, 25%)
+  border-color: lighten($brand-info, 15%)
+  color: $brand-info
+
+.form-control
+  display: block
+  width: 100%
+  padding: .5rem .75rem
+  font-size: 1rem
+  line-height: 1.25
+  color: $gray
+  background-color: $white
+  background-image: none
+  -webkit-background-clip: padding-box
+  background-clip: padding-box
+  border: 1px solid rgba(0,0,0,.15)
+  border-radius: .25rem
+  &:focus
+    color: $gray
+    background-color: $white
+    border-color: $brand-info
+    outline: 0
+
+.rating
+  unicode-bidi: bidi-override
+  direction: rtl
+
+.rating > span
+  display: inline-block
+  position: relative
+  width: 1.1em
+
+.rating2
+  &:before
+    content: "\2605\2605"
