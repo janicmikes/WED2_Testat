@@ -1,4 +1,4 @@
-<form method="post" action="{{#if note}}/notes/edit/{{note._id}}{{else}}/notes/new{{/if}}">
+<form method="post" action="{{#if note}}/notes/edit/{{note._id}}{{else}}/notes/new{{/if}}{{#if theme}}?theme=dark{{/if}}">
     <h1>Neue Todo</h1>
     <label>Title</label>
     <input class="form-control" type="text" name="title" id="InputNewNoteTitle" placeholder="Title" value="{{note.title}}" required/>
@@ -17,5 +17,5 @@
     <br>
     <label></label>
     <button class="btn btn-primary" id="BtnNewNoteSave" type="submit" value="Save">Save</button>
-    <a href="/{{params}}" class="btn btn-secondary" id="BtnNewNoteCancel" type="reset" value="Cancel">Cancel</a>
+    <a href="/{{#if theme}}?theme=dark{{/if}}" class="btn btn-secondary" id="BtnNewNoteCancel" type="reset" value="Cancel">Cancel</a>
 </form>

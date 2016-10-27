@@ -2,85 +2,143 @@ var store = require("../services/notesStore");
 
 create = function (req, res) {
     store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
-        res.redirect("/");
+        res.redirect("/"+req._parsedUrl.search);
     });
 };
 
 getAll = function (req, res) {
-    var filter = req.query.show;
-    var theme = req.query.theme ? req.query.theme : "";
+    var filter, order, theme;
     var buttons = {
         filter: {
             class: "",
-            action: "",
-            baseaction: ""
+            href: "&filter=all",
+            current_href: ""
         },
-        finish: "",
-        create: "",
-        importance: "",
-        show: "all",
-        showBtnState: "undone"
+        finish: {
+            class: "",
+            href: "&order=finish"
+        },
+        create: {
+            class: "",
+            href: "&order=create"
+        },
+        importance: {
+            class: "",
+            href: "&order=importance"
+        },
+        theme: {
+            class: "",
+            href: "&theme=dark",
+            current_href: ""
+        },
+        sorting_href: ""
     };
-    var query = req.query;
 
-    // TODO: wenn sortiert war, muss der sortier parameter bei allen links die genereiert werden mitgegeben werden,
-    // sonst geht die Sortierung beim wechsel verlohren.
-
-    // Fall: Sort by importnace desc dann den Filter ein und aus schalten sollte die sortierung nicht veraendern.
-    if(filter == "all"){
-        buttons.filter.class = "active";
-        buttons.filter.action = "/?"+req.query;
-        query.filter = "";
-        filter = {};
-        buttons.showBtnState = "undone";
+    // Prepare the Theme Button
+    if (req.query.theme == "dark") {
+        buttons.theme.class = "active";
+        buttons.theme.href = "";
+        buttons.theme.current_href = "&theme=dark";
+        theme = "dark";
     } else {
-        buttons.filter = "";
-        filter = { done: false };
-        buttons.showBtnState = "all";
+        buttons.theme.class = "";
+        buttons.theme.href = "&theme=dark"
+        buttons.theme.current_href = "";
     }
 
+    // Prepare the Filter Button
+    if (req.query.filter == "all") {
+        buttons.filter.class = "active";
+        buttons.filter.href = "";
+        buttons.filter.current_href = "&filter=all"
+        filter = {};
+    } else {
+        buttons.filter.class = "";
+        buttons.filter.href = "&filter=all"
+        buttons.filter.current_href = ""
+        filter = {done: false};
+    }
 
-
-    var orderBy = req.query.order;
 
     var direction = req.query.direction == "desc" ? -1 : 1;
     if (direction == -1) {
         buttons.direction = true;
+        buttons.direction = ""
     }
     buttons.show = req.query.show;
 
 
-    switch(orderBy){
+    switch (req.query.order) {
         case "finish":
-            orderBy = { dueDate: 1 * direction };
-            buttons.finish = direction ? "active asc" : "active desc";
+            order = {dueDate: 1 * direction};
+            if (direction > 0) {
+                buttons.finish.href = "&order=finish&direction=desc";
+                buttons.finish.class = "active asc";
+                buttons.sorting_href = "&order=finish";
+            } else {
+                buttons.finish.href = "&order=finish";
+                buttons.finish.class = "active desc";
+                buttons.sorting_href = "&order=finish&direction=desc";
+            }
             break;
-        case "create": orderBy = { createDate: 1 * direction };
-            buttons.create = direction ? "active asc" : "active desc";
+        case "create":
+            order = {createDate: 1 * direction};
+            if (direction > 0) {
+                buttons.create.href = "&order=create&direction=desc";
+                buttons.create.class = "active asc";
+                buttons.sorting_href = "&order=create";
+            } else {
+                buttons.create.href = "&order=create";
+                buttons.create.class = "active desc";
+                buttons.sorting_href = "&order=create&direction=desc";
+            }
             break;
-        case "importance": orderBy = { importance: -1 * direction };
-            buttons.importance = direction ? "active asc" : "active desc";
+        case "importance":
+            order = {importance: -1 * direction};
+
+            if (direction > 0) {
+                buttons.importance.href = "&order=importance&direction=desc";
+                buttons.importance.class = "active asc";
+                buttons.sorting_href = "&order=importance";
+            } else {
+                buttons.importance.href = "&order=importance";
+                buttons.importance.class = "active desc";
+                buttons.sorting_href = "&order=importance&direction=desc";
+            }
             break;
         default:
-            orderBy = { createDate: -1 }
-            buttons.create = direction ? "active asc" : "active desc";
+            order = {createDate: -1}
+            buttons.create.href = "&order=create&direction=desc";
+            buttons.create.class = "active desc";
+            buttons.sorting_href = "";
     }
 
-    store.all(filter, orderBy, function (err, data) {
+    store.all(filter, order, function (err, data) {
         res.render('index', {title: "Notes - A WED2 Testat", theme: theme, buttons: buttons, notes: data});
     });
 };
 
 get = function (req, res) {
+    if (req.query.theme == "dark") {
+        theme = "dark";
+    }
+
     store.get(req.params.id, function (err, data) {
-        res.render('note', {note: data});
+        res.render('note', {theme: theme, note: data});
     });
 };
 
-update = function(req, res){
-    store.update(req.params.id, req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, numReplaced){
-        res.redirect("/");
+newnote = function (req, res) {
+    if (req.query.theme == "dark") {
+        theme = "dark";
+    }
+    res.render('note', {theme: theme});
+};
+
+update = function (req, res) {
+    store.update(req.params.id, req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, numReplaced) {
+        res.redirect("/"+req._parsedUrl.search);
     });
 };
 
-module.exports = {create: create, get: get, getAll: getAll, update: update};
+module.exports = {create: create, get: get, getAll: getAll, update: update, newnote: newnote};
