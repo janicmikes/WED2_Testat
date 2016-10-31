@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="/notes/edit/{{this._id}}?{{buttons.theme.current_href}}" class="btn btn-primary">Edit</a>
+                    <a href="/notes/edit/{{this._id}}{{#if this.theme}}?theme={{this.theme}}{{/if}}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </li>

@@ -114,9 +114,17 @@ getAll = function (req, res) {
     }
 
     store.all(filter, order, function (err, data) {
+        data = addThemeToData(data, theme);
         res.render('index', {title: "Notes - A WED2 Testat", theme: theme, buttons: buttons, notes: data});
     });
 };
+
+function addThemeToData(data, theme){
+    for (var i=0; i < data.length; i++){
+        data[i].theme = theme;
+    }
+    return data;
+}
 
 get = function (req, res) {
     var theme = "";
