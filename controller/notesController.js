@@ -2,7 +2,8 @@ var store = require("../services/notesStore");
 
 create = function (req, res) {
     store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
-        res.redirect("/"+req._parsedUrl.search);
+        var search = req._parsedUrl.search ? req._parsedUrl.search : "";
+        res.redirect("/" + search);
     });
 };
 
@@ -119,8 +120,8 @@ getAll = function (req, res) {
     });
 };
 
-function addThemeToData(data, theme){
-    for (var i=0; i < data.length; i++){
+function addThemeToData(data, theme) {
+    for (var i = 0; i < data.length; i++) {
         data[i].theme = theme;
     }
     return data;
@@ -147,7 +148,8 @@ newnote = function (req, res) {
 
 update = function (req, res) {
     store.update(req.params.id, req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, numReplaced) {
-        res.redirect("/"+req._parsedUrl.search);
+        var search = req._parsedUrl.search ? req._parsedUrl.search : "";
+        res.redirect("/" + search);
     });
 };
 
