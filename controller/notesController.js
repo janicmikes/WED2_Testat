@@ -119,6 +119,7 @@ getAll = function (req, res) {
 };
 
 get = function (req, res) {
+    var theme = "";
     if (req.query.theme == "dark") {
         theme = "dark";
     }
@@ -129,6 +130,7 @@ get = function (req, res) {
 };
 
 newnote = function (req, res) {
+    var theme = "";
     if (req.query.theme == "dark") {
         theme = "dark";
     }
