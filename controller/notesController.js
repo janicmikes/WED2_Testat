@@ -2,8 +2,8 @@ var store = require("../services/notesStore");
 
 create = function (req, res) {
     store.add(req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, note) {
-        var search = req._parsedUrl.search ? req._parsedUrl.search : "";
-        res.redirect("/" + search);
+        var query = req._parsedUrl.search ? req._parsedUrl.search : "";
+        res.redirect("/" + query);
     });
 };
 
@@ -115,41 +115,44 @@ getAll = function (req, res) {
     }
 
     store.all(filter, order, function (err, data) {
-        data = addThemeToData(data, theme);
-        res.render('index', {title: "Notes - A WED2 Testat", theme: theme, buttons: buttons, notes: data});
+        var query = req._parsedUrl.search ? req._parsedUrl.search : "";
+        data = addQueryToData(data, query);
+        res.render('index', {title: "Notes (A WED2 attestation)", query: query, theme: theme, buttons: buttons, notes: data});
     });
 };
 
-function addThemeToData(data, theme) {
+function addQueryToData(data, query) {
     for (var i = 0; i < data.length; i++) {
-        data[i].theme = theme;
+        data[i].query = query;
     }
     return data;
 }
 
 get = function (req, res) {
+    var query = req._parsedUrl.search ? req._parsedUrl.search : "";
     var theme = "";
     if (req.query.theme == "dark") {
         theme = "dark";
     }
 
     store.get(req.params.id, function (err, data) {
-        res.render('note', {theme: theme, note: data});
+        res.render('note', {title: "Edit: " + data.title+" - Notes (A WED2 attestation)", theme: theme, note: data, query: query});
     });
 };
 
 newnote = function (req, res) {
+    var query = req._parsedUrl.search ? req._parsedUrl.search : "";
     var theme = "";
     if (req.query.theme == "dark") {
         theme = "dark";
     }
-    res.render('note', {theme: theme});
+    res.render('note', {title: "New Note - Notes (A WED2 attestation)", theme: theme, query: query});
 };
 
 update = function (req, res) {
     store.update(req.params.id, req.body.title, req.body.description, req.body.importance, req.body.dueDate, req.body.done, function (err, numReplaced) {
-        var search = req._parsedUrl.search ? req._parsedUrl.search : "";
-        res.redirect("/" + search);
+        var query = req._parsedUrl.search ? req._parsedUrl.search : "";
+        res.redirect("/" + query);
     });
 };
 

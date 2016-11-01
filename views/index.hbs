@@ -1,6 +1,6 @@
 <div class="container">
     <div>
-        <a href="/notes/new?{{buttons.theme.current_href}}" class="btn btn-primary">Create new Note</a>
+        <a href="/notes/new{{#if query}}{{query}}{{/if}}" class="btn btn-primary">Create new Note</a>
     </div>
     <div>
         <a href="/?{{buttons.filter.current_href}}{{buttons.sorting_href}}{{buttons.theme.href}}" class="btn btn-secondary {{buttons.theme.class}}">Style switcher</a>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div>
-                    <a href="/notes/edit/{{this._id}}{{#if this.theme}}?theme={{this.theme}}{{/if}}" class="btn btn-primary">Edit</a>
+                    <a href="/notes/edit/{{this._id}}{{#if this.query}}{{this.query}}{{/if}}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </li>
