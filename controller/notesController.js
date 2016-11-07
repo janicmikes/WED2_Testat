@@ -36,16 +36,19 @@ getAll = function (req, res) {
     };
 
     // Prepare the Theme Button
-    if (req.query.theme == "dark") {
-        buttons.theme.class = "active";
-        buttons.theme.href = "";
-        buttons.theme.current_href = "&theme=dark";
-        theme = "dark";
-    } else {
-        buttons.theme.class = "";
-        buttons.theme.href = "&theme=dark"
-        buttons.theme.current_href = "";
+    theme = req.session.theme ? req.session.theme : "";
+
+    if (req.body.theme == "switch") {
+        theme = theme == "" ? "dark" : "";
     }
+
+    if(theme == "dark") {
+        req.session.theme = "dark";
+        buttons.theme.class = "active";
+    } else {
+        req.session.theme = "";
+    }
+
 
     // Prepare the Filter Button
     if (req.query.filter == "all") {
@@ -131,7 +134,7 @@ function addQueryToData(data, query) {
 get = function (req, res) {
     var query = req._parsedUrl.search ? req._parsedUrl.search : "";
     var theme = "";
-    if (req.query.theme == "dark") {
+    if (req.session.theme == "dark") {
         theme = "dark";
     }
 
@@ -143,7 +146,7 @@ get = function (req, res) {
 newnote = function (req, res) {
     var query = req._parsedUrl.search ? req._parsedUrl.search : "";
     var theme = "";
-    if (req.query.theme == "dark") {
+    if (req.session.theme == "dark") {
         theme = "dark";
     }
     res.render('note', {title: "New Note - Notes (A WED2 attestation)", theme: theme, query: query});

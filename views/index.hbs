@@ -3,17 +3,17 @@
         <a href="/notes/new{{#if query}}{{query}}{{/if}}" class="btn btn-primary">Create new Note</a>
     </div>
     <div>
-        <a href="/?{{buttons.filter.current_href}}{{buttons.sorting_href}}{{buttons.theme.href}}" class="btn btn-secondary {{buttons.theme.class}}">Style switcher</a>
+        <form action="/?{{buttons.filter.current_href}}{{buttons.sorting_href}}" method="post"><button type="submit" name="theme" value="switch" class="btn btn-secondary {{buttons.theme.class}}">Style switcher</button></form>
     </div>
 </div>
 <div class="container">
 
     <div data-toggle="buttons">
-        <a href="/?{{buttons.filter.current_href}}{{buttons.finish.href}}{{buttons.theme.current_href}}" class="btn btn-secondary {{buttons.finish.class}}">By finish Date</a>
-        <a href="/?{{buttons.filter.current_href}}{{buttons.create.href}}{{buttons.theme.current_href}}" class="btn btn-secondary {{buttons.create.class}}">By create Date</a>
-        <a href="/?{{buttons.filter.current_href}}{{buttons.importance.href}}{{buttons.theme.current_href}}" class="btn btn-secondary {{buttons.importance.class}}">By Importance</a>
+        <a href="/?{{buttons.filter.current_href}}{{buttons.finish.href}}" class="btn btn-secondary {{buttons.finish.class}}">By finish Date</a>
+        <a href="/?{{buttons.filter.current_href}}{{buttons.create.href}}" class="btn btn-secondary {{buttons.create.class}}">By create Date</a>
+        <a href="/?{{buttons.filter.current_href}}{{buttons.importance.href}}" class="btn btn-secondary {{buttons.importance.class}}">By Importance</a>
     </div>
-    <a href="/?{{buttons.filter.href}}{{buttons.sorting_href}}{{buttons.theme.current_href}}" class="btn btn-secondary {{buttons.filter.class}}">Show finished</a>
+    <a href="/?{{buttons.filter.href}}{{buttons.sorting_href}}" class="btn btn-secondary {{buttons.filter.class}}">Show finished</a>
 </div>
 
 <ul>
